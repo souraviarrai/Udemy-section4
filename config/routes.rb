@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root "articles#home"
-  resources :articles, only: [:show]
+  root "articles#index"
+  resources :articles
 end
