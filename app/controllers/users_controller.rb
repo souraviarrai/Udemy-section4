@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = 'welcome to the blog, successfully signed up'
+      flash[:notice] = "welcome to the blog #{@user.username}, successfully signed up"
       redirect_to articles_path
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
   private
