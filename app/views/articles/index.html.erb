@@ -1,5 +1,10 @@
 <h1>Showing Article Listing Page</h1>
-<%= link_to 'Logout', logout_path, method: :delete %>
+<% if logged_in? %>
+  <%= link_to 'Logout', logout_path, method: :delete %>
+  <p>Welcome to the Blog <%= current_user.username %></p>
+<% else %>
+  <%= link_to "Login", new_session_path, class: "nav-link" %>
+<% end %>
 <%= render 'article' %>
 <div class="flickr_pagination">
   <%= will_paginate @articles, :container => false %>
