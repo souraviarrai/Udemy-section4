@@ -1,15 +1,42 @@
-<%=render 'shared/errors', obj:@article %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Article</title>
+  <!-- Add Bootstrap CSS CDN link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <%= render 'shared/errors', obj: @article %>
 
-<%= form_with(model: @article,local: true) do |f|  %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+          <%= form_with(model: @article, local: true, class: 'needs-validation', novalidate: true) do |f| %>
+            <div class="form-group">
+              <%= f.label :title %>
+              <%= f.text_field :title, class: 'form-control', required: true %>
+              <div class="invalid-feedback">Please enter a title.</div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: 'form-control', required: true %>
+              <div class="invalid-feedback">Please enter a description.</div>
+            </div>
+
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Bootstrap JS and jQuery CDN links -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

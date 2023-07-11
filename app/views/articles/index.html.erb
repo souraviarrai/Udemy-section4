@@ -1,2 +1,6 @@
 <h1>Showing Article Listing Page</h1>
+<%= link_to 'Logout', logout_path, method: :delete %>
 <%= render 'article' %>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>
