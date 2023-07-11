@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to articles_path
     else
       flash.now[:alert] = "Wrong credentails"
-      render 'new', status: :unprocessable_entity
+      render 'new'
     end
   end
 
