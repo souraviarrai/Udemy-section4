@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Articles</title>
+  <!-- Add Bootstrap CSS CDN link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<%= link_to 'All Users', users_path, class: "nav-link" %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Creator</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.description %></td>
+      <td><% if article.user %>
+          by <%= link_to article.user.username, user_path(article.user) %>
+          <% end %>
+      </td>
+      <td>
+        <%= link_to "Show", article_path(article), class: "btn btn-primary mr-2" %>
+        <%= link_to "Edit", edit_article_path(article), class: "btn btn-secondary mr-2" %>
+        <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Create Article', new_article_path, class: "btn btn-success" %>
+
+<!-- Add Bootstrap JS and jQuery CDN links -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
